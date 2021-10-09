@@ -11,7 +11,7 @@ public class SevletSpringMVC extends AbstractAnnotationConfigDispatcherServletIn
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { AppWebConfiguration.class };
+		return new Class[] { AppWebConfiguration.class, JpaConfig.class };// JPAConfiguration.class };
 	}
 
 	@Override
