@@ -19,4 +19,8 @@ public class ProdutoDao {
 		manager.persist(produto);
 	}
 
+	public void atualizar(Produto produto) {
+		manager.merge(produto);
+	}
+
 }
