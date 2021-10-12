@@ -13,7 +13,7 @@ import com.stu.loja.dao.ProdutoDao;
 public class AppWebConfiguration {
 	@Bean
 	public InternalResourceViewResolver InternalResourceViewResolver() {
-		org.springframework.web.servlet.view.InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		return resolver;

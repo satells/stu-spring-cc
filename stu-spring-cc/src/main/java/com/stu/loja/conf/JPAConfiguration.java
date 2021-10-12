@@ -21,7 +21,6 @@ public class JPAConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 		HikariConfig configHikari = new HikariConfig();
 		configHikari.setUsername("postgres");
@@ -42,7 +41,7 @@ public class JPAConfiguration {
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
 		properties.setProperty("hibernate.generate_statistics ", "true");
 		properties.setProperty("hibernate.show_sql", "true");
-		properties.setProperty("hibernate.format_sql", "true");
+		properties.setProperty("hibernate.format_sql", "false");
 		properties.setProperty("hibernate.use_sql_comments", "true");
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 
