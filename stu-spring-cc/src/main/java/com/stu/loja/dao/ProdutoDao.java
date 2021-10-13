@@ -1,5 +1,7 @@
 package com.stu.loja.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -21,6 +23,10 @@ public class ProdutoDao {
 
 	public void atualizar(Produto produto) {
 		manager.merge(produto);
+	}
+
+	public List<Produto> listar() {
+		return manager.createQuery("select p from produto p", Produto.class).getResultList();
 	}
 
 }

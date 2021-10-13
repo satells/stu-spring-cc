@@ -9,6 +9,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -21,6 +22,7 @@ public class JPAConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		factoryBean.setJpaVendorAdapter(vendorAdapter);
 
 		HikariConfig configHikari = new HikariConfig();
 		configHikari.setUsername("postgres");
@@ -32,29 +34,25 @@ public class JPAConfiguration {
 		configHikari.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 		configHikari.addDataSourceProperty("autoCommit", "false");
 
-		HikariDataSource dataSource = new HikariDataSource(configHikari);
-
-		factoryBean.setJpaVendorAdapter(vendorAdapter);
+		factoryBean.setDataSource(new HikariDataSource(configHikari));
 
 		Properties properties = new Properties();
-
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
 		properties.setProperty("hibernate.generate_statistics ", "true");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.format_sql", "false");
 		properties.setProperty("hibernate.use_sql_comments", "true");
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		factoryBean.setJpaProperties(properties);
 
 		factoryBean.setPackagesToScan("com.stu.loja.model");
-		factoryBean.setJpaProperties(properties);
-		factoryBean.setDataSource(dataSource);
 
 		return factoryBean;
 
 	}
 
 	@Bean
-	public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
+	public TransactionManager transactionManager(EntityManagerFactory emf) {
 		return new JpaTransactionManager(emf);
 
 	}
