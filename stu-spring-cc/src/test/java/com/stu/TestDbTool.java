@@ -52,7 +52,7 @@ public class TestDbTool {
 			Produto produto = new Produto();
 			produto.setDescricao("fdasfd");
 			produto.setTitulo("fdasfd");
-			produto.setPaginas("150");
+			produto.setPaginas(150);
 
 			manager.persist(produto);
 

@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 public class TestURL implements Runnable {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		int length = 3000;
+		int length = 1000;
 		Thread[] thread = new Thread[length];
 		for (int i = 0; i < length; i++) {
 
@@ -64,7 +64,7 @@ public class TestURL implements Runnable {
 			String urlParameters = "titulo=titulo" + Thread.currentThread().getName() + "&descricao=descrição" + Thread.currentThread().getName() + "&páginas=546";
 			byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
 			int postDataLength = postData.length;
-			String request = "http://192.168.0.10/stu-spring-cc/produtos";
+			String request = "http://localhost/stu-spring-cc/produtos";
 			URL url = new URL(request);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);

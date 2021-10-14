@@ -13,10 +13,10 @@ public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	private String titulo;
 	private String descricao;
-	private String paginas;
+	private int paginas;
 	@ElementCollection
 	private List<Preco> precos;
 
@@ -28,7 +28,7 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public void setPaginas(String paginas) {
+	public void setPaginas(int paginas) {
 		this.paginas = paginas;
 	}
 
@@ -40,7 +40,7 @@ public class Produto {
 		return descricao;
 	}
 
-	public String getPaginas() {
+	public int getPaginas() {
 		return paginas;
 	}
 
