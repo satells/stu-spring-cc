@@ -20,7 +20,8 @@ import com.stu.loja.model.TipoPreco;
 import com.stu.loja.validation.ProdutoValidation;
 
 @Controller
-@RequestMapping("produtos")
+//@RequestMapping("produtos")
+@RequestMapping("/produtos")
 public class ProdutoController {
 	@Autowired
 	ProdutoDao produtoDao;
@@ -53,7 +54,8 @@ public class ProdutoController {
 
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso.");
 
-		return new ModelAndView("redirect:produtos");
+//		return new ModelAndView("redirect:produtos");
+		return new ModelAndView("redirect:/produtos");
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
