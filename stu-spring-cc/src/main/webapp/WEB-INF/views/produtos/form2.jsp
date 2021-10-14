@@ -20,33 +20,26 @@
 		</c:set>
 		<%-- <form action="${s:mvcUrl('PC#gravar').build()}" method="POST"> --%>
 		<div>
-			<label>Título</label>
-			<form:input path="produto.titulo" />
+			<label>Título</label> <input type="text" name="titulo" />
 			<form:errors path="produto.titulo" />
 
 		</div>
 		<div>
 			<label>Descrição</label>
-			<form:textarea path="produto.descricao" rows="10" cols="20" />
+			<textarea rows="10" cols="20" name="descricao"></textarea>
 			<form:errors path="produto.descricao" />
 		</div>
 		<div>
-			<label>Páginas</label>
-			<form:input path="produto.paginas" />
+			<label>Páginas</label> <input type="text" name="paginas" />
 			<form:errors path="produto.paginas" />
-		</div>
-		<div>
-			<label>Data de Lançamento</label>
-			<form:input path="produto.dataLancamento"/>
-			<form:errors path="produto.dataLancamento"/>
 		</div>
 
 
 		<c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
 			<div>
-				<label>${tipoPreco}</label>
-				<form:input path="produto.precos[${status.index}].valor"/>
-				<form:hidden path="produto.precos[${status.index}].tipo" value="${tipoPreco}"/>
+				<label>${tipoPreco}</label> <input type="text"
+					name="precos[${status.index}].valor"> <input type="hidden"
+					name="precos[${status.index}].tipo" value="${tipoPreco}">
 			</div>
 		</c:forEach>
 

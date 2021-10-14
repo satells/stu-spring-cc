@@ -20,7 +20,6 @@ import com.stu.loja.model.TipoPreco;
 import com.stu.loja.validation.ProdutoValidation;
 
 @Controller
-//@RequestMapping("produtos")
 @RequestMapping("/produtos")
 public class ProdutoController {
 	@Autowired
@@ -34,8 +33,17 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("form")
-	public ModelAndView form() {
+	public ModelAndView form(Produto produto) {
 		ModelAndView mv = new ModelAndView("/produtos/form");
+
+		mv.addObject("tipos", TipoPreco.values());
+
+		return mv;
+	}
+
+	@RequestMapping("form2")
+	public ModelAndView form2() {
+		ModelAndView mv = new ModelAndView("/produtos/form2");
 
 		mv.addObject("tipos", TipoPreco.values());
 
@@ -44,17 +52,16 @@ public class ProdutoController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
-
+		System.out.println(produto);
 		if (result.hasErrors()) {
 			System.out.println("erro no formulario");
-			return form();
+			return form(produto);
 		}
 
 		produtoDao.gravar(produto);
 
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso.");
 
-//		return new ModelAndView("redirect:produtos");
 		return new ModelAndView("redirect:/produtos");
 	}
 
