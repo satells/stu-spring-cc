@@ -16,9 +16,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.stu.loja.controllers.HomeController;
 import com.stu.loja.dao.ProdutoDao;
 import com.stu.loja.infra.FileSaver;
+import com.stu.loja.model.CarrinhoCompras;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { HomeController.class, ProdutoDao.class, FileSaver.class })
+@ComponentScan(basePackageClasses = { HomeController.class, ProdutoDao.class, FileSaver.class, CarrinhoCompras.class })
 public class AppWebConfiguration {
 	@Bean
 	public InternalResourceViewResolver InternalResourceViewResolver() {
@@ -53,5 +54,4 @@ public class AppWebConfiguration {
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
-
 }
