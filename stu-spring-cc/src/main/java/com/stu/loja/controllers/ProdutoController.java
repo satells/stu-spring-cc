@@ -11,10 +11,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.stu.loja.dao.ProdutoDao;
+import com.stu.loja.infra.FileSaver;
 import com.stu.loja.model.Produto;
 import com.stu.loja.model.TipoPreco;
 import com.stu.loja.validation.ProdutoValidation;
@@ -24,6 +26,8 @@ import com.stu.loja.validation.ProdutoValidation;
 public class ProdutoController {
 	@Autowired
 	ProdutoDao produtoDao;
+	@Autowired
+	FileSaver fileSaver;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -51,8 +55,11 @@ public class ProdutoController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
-		System.out.println(produto);
+	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
+		String sumarioPath = fileSaver.write("arquivos-sumarios", sumario);
+
+		produto.setSumarioPath(sumarioPath);
+		System.out.println(sumario.getOriginalFilename());
 		if (result.hasErrors()) {
 			System.out.println("erro no formulario");
 			return form(produto);

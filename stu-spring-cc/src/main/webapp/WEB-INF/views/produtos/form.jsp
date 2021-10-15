@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<form action="${s:mvcUrl('PC#gravar').build()}" method="POST">
+	<form action="${s:mvcUrl('PC#gravar').build()}" method="POST" enctype="multipart/form-data">
 
 		<c:set var="err">
 			<form:errors path="*" element="div" id="err" cssClass="hidden" />
@@ -37,18 +37,23 @@
 		</div>
 		<div>
 			<label>Data de Lançamento</label>
-			<form:input path="produto.dataLancamento"/>
-			<form:errors path="produto.dataLancamento"/>
+			<form:input path="produto.dataLancamento" />
+			<form:errors path="produto.dataLancamento" />
 		</div>
 
 
 		<c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
 			<div>
 				<label>${tipoPreco}</label>
-				<form:input path="produto.precos[${status.index}].valor"/>
-				<form:hidden path="produto.precos[${status.index}].tipo" value="${tipoPreco}"/>
+				<form:input path="produto.precos[${status.index}].valor" />
+				<form:hidden path="produto.precos[${status.index}].tipo"
+					value="${tipoPreco}" />
 			</div>
 		</c:forEach>
+		<div>
+			<label>Sumário</label>
+			<input name="sumario" type="file"/>
+		</div>
 
 
 		<button type="submit">Cadastrar</button>
