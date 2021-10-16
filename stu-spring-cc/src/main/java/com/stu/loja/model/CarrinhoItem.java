@@ -6,8 +6,8 @@ public class CarrinhoItem {
 	private TipoPreco tipoPreco;
 
 	public CarrinhoItem(Produto produto, TipoPreco tipoPreco) {
-		this.setProduto(produto);
-		this.setTipoPreco(tipoPreco);
+		this.produto = produto;
+		this.tipoPreco = tipoPreco;
 	}
 
 	public Produto getProduto() {
