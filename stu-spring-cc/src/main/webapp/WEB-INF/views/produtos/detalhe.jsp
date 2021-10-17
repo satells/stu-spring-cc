@@ -43,7 +43,10 @@
 			<div id="header-content">
 				<nav id="main-nav">
 					<ul class="clearfix">
-						<li><a href="/carrinho" rel="nofollow">Carrinho</a></li>
+						<li><a href="/carrinho" rel="nofollow">Carrinho Seu
+								Carrinho (${carrinhoCompras.quantidade}) </a></li>
+
+
 					</ul>
 				</nav>
 			</div>
@@ -64,15 +67,15 @@
 		</header>
 
 		<section class="buy-options clearfix">
-			<form action="c:url value=/carrinho/add" method="post" class="container">
+			<form action="${contextPath}carrinho/add" method="post"
+				class="container">
 
 
-				<input type="hidden" value="AQUI COLOQUE A ID DO PRODUTO" name="produtoId">
+				<input type="hidden" value="${produto.id}" name="produtoId" />
 				<ul id="variants" class="clearfix">
-					<input type="hidden" value="${produto.id}" name="produtoId"/>
 					<c:forEach items="${produto.precos}" var="preco">
 						<li class="buy-option">
-						<input type="radio" name="tipo" class="variant-radio" id="tipo" value="tipo" checked="checked" />
+						<input type="radio" name="tipoPreco"class="variant-radio" id="tipo" value="${preco.tipo}" checked="checked" />
 						<label class="variant-label">${preco.tipo}</label>
 						<small class="compare-at-price">R$ 39,90</small>
 						<p class="variant-price">${preco.valor}</p></li>
@@ -102,7 +105,11 @@
 					Número de páginas: <span>${produto.paginas}</span>
 				</p>
 				<p></p>
-				<p>Data de publicação: <fmt:formatDate value="${produto.dataLancamento.time}" pattern="dd/MM/yyyy"/>  </p>
+				<p>
+					Data de publicação:
+					<fmt:formatDate value="${produto.dataLancamento.time}"
+						pattern="dd/MM/yyyy" />
+				</p>
 				<p>
 					Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta
 						uma errata</a>
@@ -164,9 +171,10 @@
 				<div id="form-newsletter">
 					<form action="" method="POST" id="ss-form" class="form-newsletter">
 						<ul>
-							<li><input type="hidden" name="pageNumber" value="0" /><input
-								type="hidden" name="backupCache" value="" /><input type="email"
-								name="entry.0.single" value="" class="ss-q-short" id="entry_0"
+							<li>
+							<input type="hidden" name="pageNumber" value="0" />
+							<input	type="hidden" name="backupCache" value="" />
+							<input type="email" 								name="entry.0.single" value="" class="ss-q-short" id="entry_0"
 								placeholder="seu@email.com" /></li>
 							<li><input type="submit" name="submit"
 								value="Quero Receber!" id="submit-newsletter" /></li>
